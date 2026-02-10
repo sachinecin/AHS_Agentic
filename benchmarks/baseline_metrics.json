@@ -1,0 +1,27 @@
+{
+  "baseline_version": "1.0.0",
+  "baseline_date": "2026-02-10",
+  "retrieval": {
+    "latency_p50_ms": 280,
+    "latency_p95_ms": 630,
+    "latency_p99_ms": 850,
+    "throughput_qps": 350
+  },
+  "memory": {
+    "add_fact_avg_us": 15.2,
+    "add_fact_p95_us": 28.5,
+    "promote_avg_us": 12.8,
+    "tier1_utilization": 0.75
+  },
+  "skeptic": {
+    "conflict_detection_ms": 5.2,
+    "false_positive_rate": 0.08,
+    "false_negative_rate": 0.08
+  },
+  "economics": {
+    "token_cost_per_query_usd": 0.03,
+    "token_savings_pct": 94.0,
+    "decision_velocity_multiplier": 3.5,
+    "reasoning_regret_reduction_pct": 90.0
+  }
+}

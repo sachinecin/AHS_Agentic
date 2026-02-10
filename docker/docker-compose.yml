@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  ahs:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: ahs-agentic
+    volumes:
+      - ../src:/app/src
+      - ../tests:/app/tests
+      - ../examples:/app/examples
+    environment:
+      - QDRANT_URL=http://qdrant:6333
+      - PYTHONPATH=/app/src
+    depends_on:
+      - qdrant
+    command: tail -f /dev/null  # Keep container running
+    networks:
+      - ahs-network
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: ahs-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    networks:
+      - ahs-network
+
+volumes:
+  qdrant_storage:
+
+networks:
+  ahs-network:
+    driver: bridge
