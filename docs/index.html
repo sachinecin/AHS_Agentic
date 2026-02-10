@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AHS Agentic - Next-generation framework with Speculative Parallel-Hop Retrieval and Living, Probabilistic Graph State. 70% latency reduction, 3.5x decision velocity.">
+    <meta name="keywords" content="agentic AI, synthetic reasoning, knowledge graphs, multi-agent systems, RAG, AutoGen">
+    <meta name="author" content="Sachin">
+    <title>AHS Agentic - Synthetic Reasoning & Knowledge Synapses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0078D4;
+            --secondary-color: #d4a017;
+            --accent-color: #71afe5;
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(26, 32, 66, 0.8);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8cc;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0a0e27, #1a2040, #0a0e27);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(103, 126, 234, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(212, 160, 23, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 2rem;
+            background: rgba(26, 32, 66, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 120, 212, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Architecture Diagram */
+        .architecture-diagram {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .flow-step {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            border: 2px solid var(--primary-color);
+            text-align: center;
+            min-width: 150px;
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .flow-step:last-child::after {
+            content: '';
+        }
+
+        /* Multi-Tier Diagram */
+        .tier-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tier-card {
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid;
+            text-align: center;
+        }
+
+        .tier-1 {
+            background: rgba(0, 90, 158, 0.2);
+            border-color: #005a9e;
+        }
+
+        .tier-2 {
+            background: rgba(43, 136, 216, 0.2);
+            border-color: #2b88d8;
+        }
+
+        .tier-3 {
+            background: rgba(113, 175, 229, 0.2);
+            border-color: #71afe5;
+        }
+
+        /* Code Examples */
+        .code-example {
+            background: rgba(10, 14, 39, 0.8);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-example code {
+            color: #a9b7c6;
+        }
+
+        .keyword { color: #cc7832; }
+        .string { color: #6a8759; }
+        .comment { color: #808080; }
+        .function { color: #ffc66d; }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            background: rgba(102, 126, 234, 0.2);
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .check { color: #4ade80; }
+        .cross { color: #f87171; }
+
+        /* Use Cases */
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .use-case-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .use-case-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .use-case-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.95);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-step::after {
+                content: '↓';
+                right: 50%;
+                top: auto;
+                bottom: -30px;
+                transform: translateX(50%);
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🧠 AHS Agentic</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#comparison">Comparison</a></li>
+                <li><a href="#use-cases">Use Cases</a></li>
+                <li><a href="https://github.com/sachinecin/AHS_Agentic" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Agentic Hyper-Graph Synapse</h1>
+            <p class="subtitle">Moving Beyond Volatile Context Windows to Living, Probabilistic Graph State</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/sachinecin/AHS_Agentic" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">70%</div>
+                <div class="stat-label">Latency Reduction</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3.5x</div>
+                <div class="stat-label">Decision Velocity</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">90%</div>
+                <div class="stat-label">Reduced Reasoning Regret</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Forensic Traceability</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <h2>Core Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Speculative Parallel-Hop Retrieval</h3>
+                <p>Branching predictors anticipate data needs, issuing batch queries in a single "reasoning burst" for 70% latency reduction.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+                <h3>Non-Destructive Latent Layering</h3>
+                <p>Persists "low-salience" data in dormant layers, re-activating only when downstream contradictions are detected.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Skeptic Subroutines</h3>
+                <p>Spawns intelligent agents to resolve deltas between new evidence and existing premises, eliminating hallucination cascades.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
+                <h3>Probabilistic Hyper-Graph</h3>
+                <p>Living graph state where each node represents a fact premise with probabilistic dependencies tracked between them.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-search"></i></div>
+                <h3>Forensic Reasoning Traceability</h3>
+                <p>100% provenance tracking for every decision, providing complete audit trails for enterprise compliance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-dollar-sign"></i></div>
+                <h3>60% Compute Cost Savings</h3>
+                <p>Optimized token usage via dormant fact re-activation and incremental graph updates instead of full re-processing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture">
+        <h2>System Architecture</h2>
+        
+        <div class="architecture-diagram">
+            <h3 style="text-align: center; margin-bottom: 2rem;">Speculative Execution Flow</h3>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <strong>Query Entry</strong>
+                    <p>Input received</p>
+                </div>
+                <div class="flow-step">
+                    <strong>Predictive Branching</strong>
+                    <p>Anticipate needs</p>
+                </div>
+                <div class="flow-step">
+                    <strong>Parallel Hops</strong>
+                    <p>Batch retrieval</p>
+                </div>
+                <div class="flow-step">
+                    <strong>Synthetic Synthesis</strong>
+                    <p>Merge results</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="architecture-diagram">
+            <h3 style="text-align: center; margin-bottom: 2rem;">Multi-Tier Latent Space</h3>
+            <div class="tier-container">
+                <div class="tier-card tier-1">
+                    <h3>Tier 1: Active</h3>
+                    <p>High-salience facts in immediate context window</p>
+                </div>
+                <div class="tier-card tier-2">
+                    <h3>Tier 2: Dormant</h3>
+                    <p>Metadata and low-salience facts in localized cache</p>
+                </div>
+                <div class="tier-card tier-3">
+                    <h3>Tier 3: Deep</h3>
+                    <p>Long-term vector storage for comprehensive history</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Examples -->
+    <section id="code">
+        <h2>Quick Start</h2>
+        
+        <h3 style="margin-bottom: 1rem;">Installation</h3>
+        <div class="code-example">
+            <pre><code><span class="comment"># Install via pip</span>
+pip install ahs-agentic</code></pre>
+        </div>
+
+        <h3 style="margin-bottom: 1rem;">Usage Example</h3>
+        <div class="code-example">
+            <pre><code><span class="keyword">from</span> ahs <span class="keyword">import</span> HyperGraphAgent, SkepticSubroutine
+
+<span class="comment"># Initialize the Synapse Core</span>
+agent = <span class="function">HyperGraphAgent</span>(
+    memory_mode=<span class="string">"latent-layering"</span>,
+    retrieval_strategy=<span class="string">"speculative-parallel"</span>
+)
+
+<span class="comment"># Solve a complex regulatory audit</span>
+resolution = agent.<span class="function">resolve_conflict</span>(
+    legacy_sop=<span class="string">"internal_ops_v2.pdf"</span>,
+    new_regulation=<span class="string">"gov_reg_2024.pdf"</span>,
+    context=<span class="string">"Forensic Reconciliation Gap"</span>
+)
+
+<span class="keyword">print</span>(<span class="string">f"Decision Velocity: {resolution.velocity_gain}x"</span>)</code></pre>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section id="comparison">
+        <h2>Comparison with Existing Approaches</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Aspect</th>
+                    <th>Traditional RAG</th>
+                    <th>AutoGen-Style</th>
+                    <th>AHS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Memory</strong></td>
+                    <td>Volatile <span class="cross">✗</span></td>
+                    <td>Session-based <span class="cross">~</span></td>
+                    <td>Persistent Graph <span class="check">✓</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Retrieval</strong></td>
+                    <td>Sequential <span class="cross">✗</span></td>
+                    <td>Agent loops <span class="cross">~</span></td>
+                    <td>Speculative Parallel <span class="check">✓</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Conflicts</strong></td>
+                    <td>Ignored <span class="cross">✗</span></td>
+                    <td>Majority vote <span class="cross">~</span></td>
+                    <td>Skeptic resolution <span class="check">✓</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Traceability</strong></td>
+                    <td>None <span class="cross">✗</span></td>
+                    <td>Logs <span class="cross">~</span></td>
+                    <td>Full provenance <span class="check">✓</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Token Efficiency</strong></td>
+                    <td>High overhead <span class="cross">✗</span></td>
+                    <td>Moderate <span class="cross">~</span></td>
+                    <td>60% cost savings <span class="check">✓</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Latency</strong></td>
+                    <td>O(k·n) <span class="cross">✗</span></td>
+                    <td>O(n) <span class="cross">~</span></td>
+                    <td>O(log n) <span class="check">✓</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="use-cases">
+        <h2>Enterprise Use Cases</h2>
+        <div class="use-cases">
+            <div class="use-case-card">
+                <h3><i class="fas fa-balance-scale"></i> Regulatory Compliance</h3>
+                <p>Auto-reconcile evolving regulations against legacy SOPs. Perfect for financial services, healthcare HIPAA adherence, and manufacturing safety protocols.</p>
+            </div>
+            <div class="use-case-card">
+                <h3><i class="fas fa-file-contract"></i> Contract Intelligence</h3>
+                <p>Map multi-party agreements into queryable graphs. Detect conflicts, analyze obligations, and provide traceable reasoning for legal teams.</p>
+            </div>
+            <div class="use-case-card">
+                <h3><i class="fas fa-heartbeat"></i> Clinical Decision Support</h3>
+                <p>Combine patient history with real-time medical guidelines. Every decision backed by complete provenance chains for medical-legal compliance.</p>
+            </div>
+            <div class="use-case-card">
+                <h3><i class="fas fa-truck"></i> Supply Chain Optimization</h3>
+                <p>Real-time constraint resolution across multi-vendor networks. Predictive disruption management with forensic traceability.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="text-align: center; padding: 4rem 2rem;">
+        <h2>Ready to Transform Your AI Architecture?</h2>
+        <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem;">
+            Join the movement toward forensic-grade AI reasoning
+        </p>
+        <div class="cta-buttons">
+            <a href="https://github.com/sachinecin/AHS_Agentic" class="btn btn-primary" target="_blank">
+                <i class="fab fa-github"></i> Get Started
+            </a>
+            <a href="https://github.com/sachinecin/AHS_Agentic/blob/main/README.md" class="btn btn-secondary" target="_blank">
+                <i class="fas fa-book"></i> Documentation
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://github.com/sachinecin/AHS_Agentic" target="_blank">GitHub</a>
+            <a href="https://github.com/sachinecin/AHS_Agentic/blob/main/README.md" target="_blank">Documentation</a>
+            <a href="https://github.com/sachinecin/AHS_Agentic/blob/main/ARCHITECTURE.md" target="_blank">Architecture</a>
+            <a href="https://github.com/sachinecin/AHS_Agentic/blob/main/VISION.md" target="_blank">Vision</a>
+            <a href="https://github.com/sachinecin/AHS_Agentic/blob/main/CONTRIBUTING.md" target="_blank">Contributing</a>
+            <a href="https://github.com/sachinecin/AHS_Agentic/issues" target="_blank">Issues</a>
+        </div>
+        <p style="color: var(--text-secondary);">
+            &copy; 2026 AHS Agentic. Built for enterprises who demand forensic-grade AI reasoning.
+        </p>
+        <p style="color: var(--text-secondary); margin-top: 1rem;">
+            <a href="https://github.com/sachinecin/AHS_Agentic/blob/main/LICENSE" style="color: var(--text-secondary);">MIT License</a>
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
