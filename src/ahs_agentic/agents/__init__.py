@@ -1,7 +1,5 @@
 """
-Agent implementations for the AHS framework.
+Agent implementations for AHS framework.
 """
 
-from ahs_agentic.agents.hypergraph_agent import HyperGraphAgent
-
-__all__ = ["HyperGraphAgent"]
+__all__ = []
