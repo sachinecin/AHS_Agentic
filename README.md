@@ -1,6 +1,6 @@
 # Agentic Hyper-Graph Synapse (AHS) 🧠🕸️
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
 [![Python: 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Architecture: Synthetic Reasoning](https://img.shields.io/badge/Arch-Synthetic--Reasoning-0078D4.svg)](#-architecture)
 [![Performance: 3.5x Decision Velocity](https://img.shields.io/badge/Performance-3.5x--Velocity-brightgreen.svg)](#-economic-impact)
@@ -48,3 +48,15 @@ graph TD
     style E1 fill:#005a9e,stroke:#fff,color:#fff
     style E2 fill:#2b88d8,stroke:#fff,color:#fff
     style E3 fill:#71afe5,stroke:#fff,color:#fff
+```
+
+---
+
+## 📄 License
+
+Proprietary License - All Rights Reserved.
+
+This is proprietary software. Unauthorized copying, distribution, or use is strictly prohibited.
+See the <a>LICENSE</a> file for complete terms.
+
+For licensing inquiries, contact: sachinecin@users.noreply.github.com

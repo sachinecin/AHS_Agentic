@@ -8,6 +8,14 @@ version = "1.0.0"
 description = "Agentic Hyper-Graph Synapse for Synthetic Reasoning"
 readme = "README.md"
 requires-python = ">=3.10"
+license = {text = "Proprietary"}
+classifiers = [
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 dependencies = [
     "numpy>=1.24.0",
     "networkx>=3.0",
