@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=65.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,9 +7,81 @@ name = "ahs-agentic"
 version = "1.0.0"
 description = "Agentic Hyper-Graph Synapse for Synthetic Reasoning"
 readme = "README.md"
-requires-python = ">=3.10"
-dependencies = [
-    "numpy>=1.24.0",
-    "networkx>=3.0",
-    "openai>=1.10.0"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Sachin", email = "sachinecin@users.noreply.github.com"}
 ]
+keywords = [
+    "multi-agent-systems",
+    "agentic-ai",
+    "llmops",
+    "synthetic-reasoning",
+    "knowledge-graphs",
+    "autogen",
+    "rag",
+    "ai-agents"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "networkx>=3.0",
+    "numpy>=1.24.0",
+    "openai>=1.10.0",
+    "qdrant-client>=1.7.0",
+    "pydantic>=2.0.0",
+    "tenacity>=8.2.0",
+    "tiktoken>=0.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.7.0",
+    "flake8>=6.1.0",
+    "mypy>=1.5.0",
+    "isort>=5.12.0",
+]
+
+[project.urls]
+Homepage = "https://sachinecin.github.io/AHS_Agentic/"
+Documentation = "https://github.com/sachinecin/AHS_Agentic/blob/main/README.md"
+Repository = "https://github.com/sachinecin/AHS_Agentic"
+Issues = "https://github.com/sachinecin/AHS_Agentic/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ['py39', 'py310', 'py311']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=src --cov-report=html --cov-report=term-missing"
