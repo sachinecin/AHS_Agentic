@@ -66,7 +66,6 @@ graph TB
     W2 -->|Draft| Skeptic
     W3 -->|Draft| Skeptic
     
-    Skeptic -->|Check Conflicts| Skeptic
     Skeptic -->|Confidence < 0.85| HITL
     HITL -->|Approved| Output
     Skeptic -->|Confidence ≥ 0.85| Output
