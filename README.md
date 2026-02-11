@@ -163,7 +163,7 @@ sequenceDiagram
 1. ⚡ **Parallel research** (3 agents simultaneously)
 2. 📝 **Parallel writing** (context-aware)
 3. 🛡️ **Automatic validation** with confidence scores
-4. 👨‍💼 **Human escalation** when confidence < 0.85
+4. 👨‍💼 **Human escalation** when confidence < 0.85 (configurable threshold)
 5. 📊 **Full provenance** trail for audits
 
 ---
@@ -213,9 +213,9 @@ graph LR
 ```
 
 **Choose your model:**
-- 🟢 **OpenAI GPT-4** - Best for reasoning
-- 🟠 **Anthropic Claude** - Best for writing
-- 🟣 **Ollama Llama 3** - Best for cost (local)
+- 🟢 **OpenAI GPT-4** - Best for reasoning (large context, strong logic)
+- 🟠 **Anthropic Claude** - Best for writing (natural language, safety)
+- 🟣 **Ollama Llama 3** - Best for cost (local deployment, privacy)
 
 ---
 
