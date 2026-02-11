@@ -3,8 +3,8 @@ Token usage tracking and cost estimation for LLM calls.
 """
 import functools
 import time
-from typing import Any, Callable, Dict, Optional
-from dataclasses import dataclass, field
+from typing import Any, Callable, Dict
+from dataclasses import dataclass
 from datetime import datetime
 import json
 

@@ -1,9 +1,15 @@
 [tool.poetry]
-name = "your_package_name"
-version = "0.1.0"
-description = "A short description of your package."
-authors = ["Your Name <you@example.com>"]
-dependencies = {
-tenacity = "^8.0.0",
+name = "ahs_agentic"
+version = "1.0.0"
+description = "Agentic Hyper-Graph Synapse - A next-generation framework for synthetic reasoning with living graph state"
+authors = ["Sachin <sachinecin@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+tenacity = "^8.0.0"
 tiktoken = "^0.5.0"
-}
+numpy = "^1.24.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
