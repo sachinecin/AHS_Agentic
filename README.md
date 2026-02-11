@@ -661,11 +661,11 @@ print(f"Trimmed from {caller.count_tokens(large_prompt)} to {caller.count_tokens
 **Vote on upcoming features:** [GitHub Discussions](https://github.com/sachinecin/AHS_Agentic/discussions)
 
 **Top Requested Features:**
-1. 🔥 **Real-time Conflict Dashboard** - 127 votes
-2. 🔥 **API Gateway Integration** - 98 votes  
-3. 🔥 **Multi-Language Support** - 76 votes
-4. **Custom Skeptic Plugins** - 54 votes
-5. **Terraform Deployment** - 43 votes
+1. 🔥 **Real-time Conflict Dashboard**
+2. 🔥 **API Gateway Integration**
+3. 🔥 **Multi-Language Support**
+4. **Custom Skeptic Plugins**
+5. **Terraform Deployment**
 
 **Legend:**
 - ✅ Complete
@@ -788,27 +788,27 @@ conflict = skeptic.evaluate_conflict(
 <tr>
 <td>📖 <b>API Reference</b></td>
 <td>Complete API documentation for all modules</td>
-<td><a href="docs/api_reference.md">View Docs</a></td>
+<td><a href="src/ahs_agentic">View Source</a></td>
 </tr>
 <tr>
 <td>🎓 <b>Architecture Deep Dive</b></td>
 <td>Technical whitepaper on Synthetic Reasoning</td>
-<td><a href="docs/architecture.md">Read Whitepaper</a></td>
+<td><a href="#architecture">Read Architecture</a></td>
 </tr>
 <tr>
 <td>💡 <b>Examples Gallery</b></td>
-<td>50+ production-ready code examples</td>
+<td>Production-ready code examples</td>
 <td><a href="examples/">Browse Examples</a></td>
 </tr>
 <tr>
 <td>🐛 <b>Troubleshooting</b></td>
 <td>Common issues and solutions</td>
-<td><a href="docs/troubleshooting.md">Get Help</a></td>
+<td><a href="https://github.com/sachinecin/AHS_Agentic/issues">Report Issues</a></td>
 </tr>
 <tr>
 <td>🎥 <b>Video Tutorials</b></td>
 <td>Step-by-step video guides</td>
-<td><a href="https://youtube.com/@ahs_agentic">Watch Now</a></td>
+<td><a href="#quickstart">View Quickstart</a></td>
 </tr>
 <tr>
 <td>💬 <b>Community Forum</b></td>
@@ -862,31 +862,31 @@ AHS_Agentic is available under proprietary license for enterprise customers.
 <td>Latency Reduction</td>
 <td><b>70%</b></td>
 <td>15%</td>
-<td><a href="benchmarks/latency_test.py">View Test</a></td>
+<td><a href="#architecture">Architecture Details</a></td>
 </tr>
 <tr>
 <td>Decision Velocity</td>
 <td><b>3.5x</b></td>
 <td>1.2x</td>
-<td><a href="benchmarks/velocity_test.py">View Test</a></td>
+<td><a href="#why-ahs">Why AHS</a></td>
 </tr>
 <tr>
 <td>Cost Savings</td>
 <td><b>60%</b></td>
 <td>10%</td>
-<td><a href="benchmarks/cost_analysis.py">View Analysis</a></td>
+<td><a href="#architecture">Multi-Tier Memory</a></td>
 </tr>
 <tr>
 <td>Reasoning Regret</td>
 <td><b>90% reduction</b></td>
 <td>N/A</td>
-<td><a href="benchmarks/regret_test.py">View Test</a></td>
+<td><a href="#quickstart">Skeptic Demo</a></td>
 </tr>
 <tr>
 <td>Conflict Detection</td>
 <td><b>97.3%</b></td>
 <td>42%</td>
-<td><a href="benchmarks/conflict_test.py">View Test</a></td>
+<td><a href="src/ahs_agentic/core/skeptic.py">View Code</a></td>
 </tr>
 </table>
 
