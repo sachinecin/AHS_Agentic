@@ -65,7 +65,8 @@ class SkepticSubroutine:
         existing_fact_text: str = "",
         new_evidence_text: str = ""
     ) -> ConflictReport:
-        """Compute conflict delta and determine if Skeptic should trigger."""
+        """
+        Compute conflict delta and determine if Skeptic should trigger.
         
         Args:
             existing_fact_vector: Embedding of existing graph node
@@ -118,7 +119,8 @@ class SkepticSubroutine:
         existing_fact_vector: np.ndarray, 
         new_evidence_vector: np.ndarray
     ) -> float:
-        """Compute logical divergence using cosine similarity."""
+        """
+        Compute logical divergence using cosine similarity.
         
         Returns:
             Delta score (0 = identical, 1 = complete divergence)
@@ -127,26 +129,28 @@ class SkepticSubroutine:
         return 1 - similarity
     
     def should_trigger(self, delta: float) -> bool:
-        """Triggering logic: if delta exceeds threshold, spawn Skeptic.""" 
+        """
+        Triggering logic: if delta exceeds threshold, spawn Skeptic.
         
         This is the critical decision point that prevents both:
-        - False positives (too sensitive → unnecessary re-activation)
-        - False negatives (too lenient → missed contradictions)
-        """  
+        - False positives (too sensitive -> unnecessary re-activation)
+        - False negatives (too lenient -> missed contradictions)
+        """
         return delta > self.threshold
     
     def adaptive_recalibration(self, feedback_score: float):
-        """Adjust threshold based on downstream validation feedback.""" 
+        """
+        Adjust threshold based on downstream validation feedback.
         
         Args:
             feedback_score: Human or automated validation score (0-1)
-        """  
+        """
         # Simple adaptive learning: adjust threshold by 5% based on feedback
         adjustment = 0.05 * (feedback_score - 0.5)
         self.threshold = np.clip(self.threshold + adjustment, 0.7, 0.98)
     
     def _cosine_sim(self, v1: np.ndarray, v2: np.ndarray) -> float:
-        """Compute cosine similarity between two vectors.""" 
+        """Compute cosine similarity between two vectors."""
         dot_product = np.dot(v1, v2)
         norm_product = np.linalg.norm(v1) * np.linalg.norm(v2)
         
@@ -157,9 +161,10 @@ class SkepticSubroutine:
         return dot_product / norm_product
     
     def _calculate_confidence(self, delta: float) -> float:
-        """Calculate confidence in conflict detection."
+        """
+        Calculate confidence in conflict detection.
         Higher delta = higher confidence in conflict.
-        """ 
+        """
         if delta > 0.95:
             return 0.99
         elif delta > self.threshold:
@@ -168,7 +173,7 @@ class SkepticSubroutine:
             return 0.70
     
     def get_conflict_statistics(self) -> Dict[str, float]:
-        """Return aggregate statistics on detected conflicts.""" 
+        """Return aggregate statistics on detected conflicts."""
         if not self.conflict_history:
             return {"total_conflicts": 0, "avg_delta": 0.0}
         
