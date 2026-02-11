@@ -9,6 +9,16 @@
 
 ---
 
+## 🔧 Technical Highlights
+
+- **Stateful Orchestration**: Utilizes a centralized MessageBus to maintain conversation state across multiple agent turns.
+
+- **Agent Autonomy**: Agents are decoupled from the LLM provider, allowing for easy switching between OpenAI, Anthropic, or Local Models.
+
+- **Extensible Schema**: Built on the BaseAgent abstract class, making it easy to add specialized agents (e.g., CodingAgent, ReviewerAgent) in minutes.
+
+---
+
 ## 🏗️ System Architecture
 
 AHS replaces linear RAG with a **Synthetic Reasoning Architecture**. Below is the flow of the **Hyper-Graph Synapse**:
@@ -48,3 +58,4 @@ graph TD
     style E1 fill:#005a9e,stroke:#fff,color:#fff
     style E2 fill:#2b88d8,stroke:#fff,color:#fff
     style E3 fill:#71afe5,stroke:#fff,color:#fff
+```
