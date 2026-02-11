@@ -1,6 +1,8 @@
 # Agentic Hyper-Graph Synapse (AHS) 🧠🕸️
 
- 
+[![Python CI/CD Pipeline](https://github.com/sachinecin/AHS_Agentic/actions/workflows/python-app.yml/badge.svg)](https://github.com/sachinecin/AHS_Agentic/actions/workflows/python-app.yml)
+[![codecov](https://codecov.io/gh/sachinecin/AHS_Agentic/branch/main/graph/badge.svg)](https://codecov.io/gh/sachinecin/AHS_Agentic)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Python: 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Architecture: Synthetic Reasoning](https://img.shields.io/badge/Arch-Synthetic--Reasoning-0078D4.svg)](#-architecture)
 [![Performance: 3.5x Decision Velocity](https://img.shields.io/badge/Performance-3.5x--Velocity-brightgreen.svg)](#-economic-impact)
