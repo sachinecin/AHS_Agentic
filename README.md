@@ -5,9 +5,9 @@
 [![Architecture: Synthetic Reasoning](https://img.shields.io/badge/Arch-Synthetic--Reasoning-0078D4.svg)](#-architecture)
 [![Performance: 3.5x Decision Velocity](https://img.shields.io/badge/Performance-3.5x--Velocity-brightgreen.svg)](#-economic-impact)
 [![GitHub Stars](https://img.shields.io/github/stars/sachinecin/AHS_Agentic?style=social)](https://github.com/sachinecin/AHS_Agentic)
-[![Architecture: Agentic RAG](https://img.shields.io/badge/Architecture-Agentic%20RAG-blueviolet.svg)](#architecture)
+[![Architecture: Agentic RAG](https://img.shields.io/badge/Architecture-Agentic%20RAG-blueviolet.svg)](#-visual-architecture)
 [![Multi-Model](https://img.shields.io/badge/Models-OpenAI%20%7C%20Anthropic%20%7C%20Ollama-success.svg)](#multi-model-support)
-[![SOLID Principles](https://img.shields.io/badge/Code-SOLID%20Principles-orange.svg)](#architecture)
+[![SOLID Principles](https://img.shields.io/badge/Code-SOLID%20Principles-orange.svg)](#-system-architecture)
 
 **AHS Agentic** is a next-generation framework designed to move beyond volatile context windows toward a **Living, Probabilistic Graph State**. At the CTO level, AHS shifts the focus from prompt engineering to **Agentic Architecture**, solving the "Forensic Reconciliation Gap" for enterprise-scale medical, legal, and technical audits.
 
@@ -66,7 +66,7 @@ graph TB
     W2 -->|Draft| Skeptic
     W3 -->|Draft| Skeptic
     
-    Skeptic -->|Conflicts?| Skeptic
+    Skeptic -->|Check Conflicts| Skeptic
     Skeptic -->|Confidence < 0.85| HITL
     HITL -->|Approved| Output
     Skeptic -->|Confidence ≥ 0.85| Output
@@ -216,7 +216,7 @@ graph LR
 **Choose your model:**
 - 🟢 **OpenAI GPT-4** - Best for reasoning
 - 🟠 **Anthropic Claude** - Best for writing
-- 🔵 **Ollama Llama 3** - Best for cost (local)
+- 🟣 **Ollama Llama 3** - Best for cost (local)
 
 ---
 
