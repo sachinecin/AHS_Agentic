@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from datetime import datetime
 import json
 
+
 @dataclass
 class TokenUsage:
     """Track token usage for a single LLM call."""
@@ -20,6 +21,10 @@ class TokenUsage:
     estimated_cost_usd: float
     latency_ms: float
     
+    # Class constant for consistent rounding
+    COST_PRECISION = 6
+    LATENCY_PRECISION = 2
+    
     def to_dict(self) -> Dict[str, Any]:
         return {
             "timestamp": self.timestamp,
@@ -30,9 +35,10 @@ class TokenUsage:
                 "output": self.output_tokens,
                 "total": self.total_tokens
             },
-            "cost_usd": round(self.estimated_cost_usd, 6),
-            "latency_ms": round(self.latency_ms, 2)
+            "cost_usd": round(self.estimated_cost_usd, self.COST_PRECISION),
+            "latency_ms": round(self.latency_ms, self.LATENCY_PRECISION)
         }
+
 
 class CostTracker:
     """
@@ -42,6 +48,11 @@ class CostTracker:
     - Input: $2.50 per 1M tokens
     - Output: $10.00 per 1M tokens
     """
+    
+    # Rounding precision constants
+    SUMMARY_COST_PRECISION = 4
+    BREAKDOWN_COST_PRECISION = 4
+    LATENCY_PRECISION = 2
     
     # Pricing per 1M tokens (USD)
     PRICING = {
@@ -113,8 +124,8 @@ class CostTracker:
         return {
             "total_calls": len(self.usage_history),
             "total_tokens": self.total_tokens,
-            "total_cost_usd": round(self.total_cost_usd, 4),
-            "average_latency_ms": round(avg_latency, 2),
+            "total_cost_usd": round(self.total_cost_usd, self.SUMMARY_COST_PRECISION),
+            "average_latency_ms": round(avg_latency, self.LATENCY_PRECISION),
             "by_model": self._get_breakdown_by_model()
         }
     
@@ -134,7 +145,7 @@ class CostTracker:
         
         # Round costs
         for model in breakdown:
-            breakdown[model]["cost_usd"] = round(breakdown[model]["cost_usd"], 4)
+            breakdown[model]["cost_usd"] = round(breakdown[model]["cost_usd"], self.BREAKDOWN_COST_PRECISION)
         
         return breakdown
     
