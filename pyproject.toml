@@ -1,9 +1,116 @@
-[tool.poetry]
-name = "your_package_name"
-version = "0.1.0"
-description = "A short description of your package."
-authors = ["Your Name <you@example.com>"]
-dependencies = {
-tenacity = "^8.0.0",
-tiktoken = "^0.5.0"
-}
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ahs-agentic"
+version = "1.0.0"
+description = "Agentic Hyper-Graph Synapse for Synthetic Reasoning - A next-gen framework for enterprise AI with speculative retrieval, conflict detection, and forensic traceability"
+authors = [{name = "sachinecin"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = [
+    "ai", "artificial-intelligence", "machine-learning",
+    "knowledge-graph", "rag", "retrieval",
+    "enterprise", "compliance", "reasoning"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "networkx>=3.0",
+    "numpy>=1.24.0",
+    "openai>=1.10.0",
+    "qdrant-client>=1.7.0",
+    "pydantic>=2.0.0",
+    "langchain>=0.1.0",
+    "tenacity>=8.0.0",
+    "tiktoken>=0.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+    "mkdocstrings[python]>=0.24.0",
+]
+
+all = [
+    "ahs-agentic[dev,docs]",
+]
+
+[project.urls]
+Homepage = "https://github.com/sachinecin/AHS_Agentic"
+Documentation = "https://sachinecin.github.io/AHS_Agentic/"
+Repository = "https://github.com/sachinecin/AHS_Agentic"
+Issues = "https://github.com/sachinecin/AHS_Agentic/issues"
+Changelog = "https://github.com/sachinecin/AHS_Agentic/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ['py39', 'py310', 'py311']
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = []
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--cov=ahs_agentic",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["*/tests/*", "*/test_*.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

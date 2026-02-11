@@ -1,0 +1,17 @@
+# AHS Agentic - Core Dependencies
+# Version: 1.0.0
+
+# Core dependencies
+networkx>=3.0,<4.0
+numpy>=1.24.0,<2.0
+openai>=1.10.0,<2.0
+qdrant-client>=1.7.0,<2.0
+pydantic>=2.0.0,<3.0
+langchain>=0.1.0,<0.2.0
+tenacity>=8.0.0,<9.0
+tiktoken>=0.5.0,<1.0
+
+# Optional: Uncomment based on your vector database choice
+# pinecone-client>=2.2.0,<3.0  # For Pinecone
+# weaviate-client>=3.20.0,<4.0  # For Weaviate
+# redis>=4.5.0,<5.0  # For Tier 2 cache
